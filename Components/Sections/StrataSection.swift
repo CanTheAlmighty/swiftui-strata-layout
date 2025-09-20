@@ -68,9 +68,9 @@ extension StrataSection {
 #Preview {
     StrataList {
         StrataSection(header: "Como estas") {
-            StrataCell("Hello World").environment(\.strataCellBackgroundRenderStyle, .head)
+            StrataCell("Hello World").environment(\.strataStackedHint, .head)
             Divider()
-            StrataCell("Hello World").environment(\.strataCellBackgroundRenderStyle, .tail)
+            StrataCell("Hello World").environment(\.strataStackedHint, .tail)
         }
     }
 }

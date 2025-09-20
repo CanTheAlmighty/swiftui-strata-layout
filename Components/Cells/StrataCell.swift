@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StrataCell<Content: View>: View {
     // Environment (Strata Cell)
-    @Environment(\.strataCellBackgroundRenderStyle) private var strataCellBackgroundRenderStyle: StrataCellBackgroundRenderStyle
+    @Environment(\.strataStackedHint)               private var strataStackedHint: StrataStackedHint
     @Environment(\.strataCellContentRenderStyle)    private var strataCellContentRenderStyle: StrataCellContentRenderStyle?
     @Environment(\.strataCellBackgroundColor)       private var strataCellBackgroundColor: Color
     @Environment(\.strataCellMetrics)               private var strataCellMetrics: StrataCellMetrics
@@ -54,7 +54,7 @@ struct StrataCell<Content: View>: View {
     }
     
     @ViewBuilder private var background: some View {
-        switch strataCellBackgroundRenderStyle {
+        switch strataStackedHint {
         case .head:
             UnevenRoundedRectangle(topLeadingRadius: strataCellMetrics.roundedness, topTrailingRadius: strataCellMetrics.roundedness)
                 .fill(strataCellBackgroundColor)
@@ -99,21 +99,21 @@ struct StrataCell<Content: View>: View {
     ScrollView {
         LazyVStack(spacing: 0.0) {
             StrataCell("Hello world!")
-                .environment(\.strataCellBackgroundRenderStyle, .head)
+                .environment(\.strataStackedHint, .head)
                 .strataCellStyle(.plain)
             Divider()
             StrataCell("How are youuu")
-                .environment(\.strataCellBackgroundRenderStyle, .middle)
+                .environment(\.strataStackedHint, .middle)
                 .strataCellStyle(.plain)
                 .strataBadge("Hello")
             Divider()
             StrataCell("Segue!")
-                .environment(\.strataCellBackgroundRenderStyle, .middle)
+                .environment(\.strataStackedHint, .middle)
                 .strataCellStyle(.segue)
                 .strataBadge("Hello")
             Divider()
             StrataCell("Goodbye")
-                .environment(\.strataCellBackgroundRenderStyle, .tail)
+                .environment(\.strataStackedHint, .tail)
                 .strataCellStyle(.plain)
         }
         .padding(16.0)

@@ -30,7 +30,7 @@ struct StrataForEach<Data: RandomAccessCollection, ID: Hashable, Content: View>:
         self.init(data, id: \Data.Element.id, content: content)
     }
     
-    private func cellRendererStyle(_ id: ID) -> StrataCellBackgroundRenderStyle {
+    private func inferStackedHint(_ id: ID) -> StrataStackedHint {
         guard let indices else { return .standalone }
         
         if id == indices.first {
@@ -46,7 +46,7 @@ struct StrataForEach<Data: RandomAccessCollection, ID: Hashable, Content: View>:
     var body: some View {
         ForEach(data, id: keyPath, content: { (element: Data.Element) in
             content(element)
-                .environment(\.strataCellBackgroundRenderStyle, cellRendererStyle(element[keyPath: keyPath]))
+                .environment(\.strataStackedHint, inferStackedHint(element[keyPath: keyPath]))
             if indices?.last != element[keyPath: keyPath] {
                 Divider()
             }

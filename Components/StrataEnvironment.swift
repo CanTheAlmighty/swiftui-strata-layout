@@ -15,7 +15,10 @@ enum StrataCellContentRenderStyle {
     }
 }
 
-enum StrataCellBackgroundRenderStyle {
+/// A `hint` applied to the contents of any vertically stacked object
+///
+/// The `hint` allows the view to set its background accordingly to their position in a vertical stack.
+enum StrataStackedHint {
     case head, middle, tail, standalone
 }
 
@@ -35,9 +38,9 @@ struct StrataCellMetrics {
 }
 
 extension EnvironmentValues {
-    /// Determines how to render the background of a cell. Any list-like `Strata` component
+    /// Determines how to render the background of any vertically stacked element. Any vertical-stacking `Strata` component
     /// automatically provides these values
-    @Entry var strataCellBackgroundRenderStyle: StrataCellBackgroundRenderStyle = .middle
+    @Entry var strataStackedHint: StrataStackedHint = .standalone
     
     /// Determines how to render the contents of a cell. The content is auto-inferred depending
     /// on the initialization of the cell, but can be overriden with this

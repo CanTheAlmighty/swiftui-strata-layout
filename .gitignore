@@ -17,6 +17,9 @@ xcuserdata/
 timeline.xctimeline
 playground.xcworkspace
 
+## XCode stuff
+*.xcodeproj/project.xcworkspace/xcuserdata/*/UserInterfaceState.xcuserstate
+
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
